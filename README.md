@@ -12,11 +12,7 @@ O projeto tem como objetivo estudar como um agente pode aprender a realizar tare
 
 > Imagem da tela do jogo rodando com as redes neurais:
 >
-> ![Screenshot do Jogo](assets/screenshot-jogo.png)
-
-> Exemplo de visualização da rede neural:
->
-> ![Rede Neural](assets/rede-neural.png)
+> ![Screenshot do Jogo](assets/rede-neural.gif)
 
 ---
 

@@ -20,26 +20,26 @@
   <div class="controls">
 
     <div class="control-group">
-      <label>Velocidade do Obstáculo</label>
+      <label>Velocidade dos Obstáculos (px/frame)</label>
       <div class="control-buttons">
         <button onclick="changeSpeed(-1)">-</button>
-        <span id="speedValue">5</span>
+        <span id="speedValue">5 px/frame</span>
         <button onclick="changeSpeed(1)">+</button>
       </div>
     </div>
     <div class="control-group">
-      <label>Frequência de Obstáculos</label>
+      <label>Frequência de Obstáculos (por segundo)</label>
       <div class="control-buttons">
         <button onclick="changeFrequency(5)">-</button>
-        <span id="frequencyValue">75</span>
+        <span id="frequencyValue">~0.9/s</span>
         <button onclick="changeFrequency(-5)">+</button>
       </div>
     </div>
     <div class="control-group">
-      <label>Velocidade Vertical</label>
+      <label>Multiplicador de Gravidade</label>
       <div class="control-buttons">
         <button onclick="changeVerticalSpeed(-0.1)">-</button>
-        <span id="verticalSpeedValue">0.3</span>
+        <span id="verticalSpeedValue">0.3x</span>
         <button onclick="changeVerticalSpeed(0.1)">+</button>
       </div>
     </div>
@@ -47,7 +47,7 @@
       <label>Altura Máxima do Pulo</label>
       <div class="control-buttons">
         <button onclick="changeJumpHeight(-5)">-</button>
-        <span id="jumpHeightValue">90</span>
+        <span id="jumpHeightValue">90 px</span>
         <button onclick="changeJumpHeight(5)">+</button>
       </div>
     </div>
@@ -55,13 +55,21 @@
       <label>Força do Pulo</label>
       <div class="control-buttons">
         <button onclick="changeJumpForce(1)">-</button>
-        <span id="jumpForceDisplay">-20</span>
+        <span id="jumpForceDisplay">1x</span>
         <button onclick="changeJumpForce(-1)">+</button>
       </div>
     </div>
 
   </div>
-  <canvas id="gameCanvas" width="800" height="200"></canvas>
+
+  <div class="container-game-canvas">
+    <div class="score-panel">
+      <span>Score</span><br>
+      <span id="score-real-time">0</span>
+    </div>
+
+    <canvas id="gameCanvas" width="800" height="200"></canvas>
+  </div>
 
   <div class="nn-container">
     <div class="nn-panel">

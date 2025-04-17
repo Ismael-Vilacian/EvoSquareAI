@@ -134,9 +134,9 @@ function updateGame() {
       d.draw();
 
       if (currentObstacle &&
-          d.x + d.width > currentObstacle.x &&
-          d.x < currentObstacle.x + currentObstacle.width &&
-          d.y + d.height > currentObstacle.y) {
+        d.x + d.width > currentObstacle.x &&
+        d.x < currentObstacle.x + currentObstacle.width &&
+        d.y + d.height > currentObstacle.y) {
         d.alive = false;
       } else {
         aliveCount++;
@@ -148,21 +148,24 @@ function updateGame() {
 
   document.getElementById('aliveCount').textContent = aliveCount;
 
-  
-if (!shownSquare || !shownSquare.alive) {
-  let alive = squares.filter(d => d.alive);
-  shownSquare = alive[Math.floor(Math.random() * alive.length)];
-}
-if (shownSquare) {
-  drawNeuralNetwork(shownSquare.brain);
-  const color = shownSquare.color;
-  const hex = rgbToHex(color);
-  const liveTitle = document.getElementById("liveTitle");
-  if (liveTitle) liveTitle.textContent = "IA Atual - " + hex;
-  const liveColor = document.getElementById("liveColor");
-  if (liveColor) liveColor.style.backgroundColor = color;
-}
+  if (!shownSquare || !shownSquare.alive) {
+    let alive = squares.filter(d => d.alive);
+    shownSquare = alive[Math.floor(Math.random() * alive.length)];
+  }
 
+  if (shownSquare) {
+    drawNeuralNetwork(shownSquare.brain);
+    const color = shownSquare.color;
+    const hex = rgbToHex(color);
+    const liveTitle = document.getElementById("liveTitle");
+    if (liveTitle) { liveTitle.textContent = "IA Atual - " + hex; }
+
+    const liveColor = document.getElementById("liveColor");
+    if (liveColor) liveColor.style.backgroundColor = color;
+
+    const liveScore = document.getElementById("score-real-time");
+    if (liveScore) liveScore.textContent = shownSquare.score;
+  }
 
   if (shownSquare) {
     drawNeuralNetwork(shownSquare.brain);
@@ -183,51 +186,52 @@ if (shownSquare) {
     const hex = rgbToHex(color);
     const bestTitle = document.getElementById("bestTitle");
     if (bestTitle) bestTitle.textContent = "Melhor da Geração - " + hex;
-  const bestColor = document.getElementById("bestColor");
-  if (bestColor) bestColor.style.backgroundColor = color;
-}
+    const bestColor = document.getElementById("bestColor");
+    if (bestColor) bestColor.style.backgroundColor = color;
+  }
   requestAnimationFrame(updateGame);
 }
 
-
-
-window.changeSpeed = function(delta) {
+window.changeSpeed = function (delta) {
   obstacleSpeed = Math.max(1, obstacleSpeed + delta);
   const val = document.getElementById('speedValue');
-  if (val) val.textContent = obstacleSpeed;
-};
+  if (val) val.textContent = `${obstacleSpeed} px/frame`;
+};;
 
-window.changeFrequency = function(delta) {
+window.changeFrequency = function (delta) {
   obstacleFrequency = Math.max(10, obstacleFrequency + delta);
   const val = document.getElementById('frequencyValue');
-  if (val) val.textContent = obstacleFrequency;
-};
+  if (val) {
+    const spawnsPerSecond = (60 / obstacleFrequency).toFixed(1);
+    val.textContent = `~${spawnsPerSecond}/s`;
+  }
+};;
 
 setup();
 updateGame();
 
-window.changeJumpForce = function(delta) {
+window.changeJumpForce = function (delta) {
   jumpForce = Math.max(-30, Math.min(-1, jumpForce + delta));
   const val = document.getElementById('jumpForceDisplay');
   if (val) val.textContent = jumpForce;
 }
 
-window.changeVerticalSpeed = function(delta) {
+window.changeVerticalSpeed = function (delta) {
   verticalSpeed = Math.max(0.1, Math.round((verticalSpeed + delta) * 10) / 10);
   const val = document.getElementById('verticalSpeedValue');
-  if (val) val.textContent = verticalSpeed.toFixed(1);
-}
+  if (val) val.textContent = `${verticalSpeed.toFixed(1)}x`;
+};
 
-window.changeJumpHeight = function(delta) {
+window.changeJumpHeight = function (delta) {
   maxJumpHeight = Math.max(20, maxJumpHeight + delta);
   const val = document.getElementById('jumpHeightValue');
-  if (val) val.textContent = maxJumpHeight;
-}
+  if (val) val.textContent = `${maxJumpHeight} px`;
+};
 
-window.changeJumpForce = function(delta) {
+window.changeJumpForce = function (delta) {
   jumpForce = Math.max(-30, Math.min(-1, jumpForce + delta));
   const val = document.getElementById('jumpForceDisplay');
-  if (val) val.textContent = jumpForce;
+  if (val) val.textContent = `${(jumpForce * -1) / 20}x`;
 }
 
 function rgbToHex(hsl) {
